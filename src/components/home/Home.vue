@@ -36,7 +36,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{name: 'Parkuser'}">
+                  <router-link :to="{name: 'Parkuser'}" :class="{'show-hignlight':status}">
                     <i class="side_icon icon-vip"></i>
                     <span class="side_text">停车用户</span>
                   </router-link>
@@ -65,7 +65,34 @@
            <transition name="fade">
              <ul v-if="showMouldeTwo">
                 <li>
-
+                  <router-link :to="{name: 'Systemuser'}">
+                    <i class="side_icon icon-systemUser"></i>
+                    <span class="side_text">系统用户</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link :to="{name: 'Systemcompany'}">
+                    <i class="side_icon icon-systemCompany"></i>
+                    <span class="side_text">系统公司</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link :to="{name: 'Systemrole'}">
+                    <i class="side_icon icon-systemRole"></i>
+                    <span class="side_text">系统角色</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link :to="{name: 'Vocation'}">
+                    <i class="side_icon icon-vocation"></i>
+                    <span class="side_text">节假日设定</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link :to="{name: 'Parkdevice'}">
+                    <i class="side_icon icon-parkDevice"></i>
+                    <span class="side_text">停车设备</span>
+                  </router-link>
                 </li>
              </ul>
            </transition>
@@ -88,9 +115,13 @@ export default {
         showMouldeTwo:false,
       }
     },
+    computed: {
+      status () {
+       return this.$store.state.nowVal
+      }
+    },
     watch: {
-
-
+      '$route':'isTab',
       showMoulde:function(newval) {
         if(newval) {
           this.showMouldeTwo = false
@@ -103,6 +134,7 @@ export default {
       }
     },
     created() {
+      this.isTab()
     },
     mounted() {
 
@@ -111,6 +143,13 @@ export default {
       handleCommand () {
 
       },
+      isTab() {
+          if(this.$route.name == 'Adduser' || this.$route.name == 'amendUser' || this.$route.name == 'keepMonth') {
+           this.$store.commit('changeStatus')
+          }else {
+            this.$store.commit('keepNative')
+          }
+      }
     }
 }
 </script>
@@ -217,9 +256,19 @@ export default {
           color: #fff;
           font-size: 14px;
           text-decoration: none;
+          &.show-hignlight {
+            .icon-vip {
+               background: url("../../assets/images/icon-vip-active.png") no-repeat;
+            }
+            background-color: #191c20;
+            border-radius: 30px 0px 0px 30px;
+            box-sizing: border-box;
+            color: #fba128;
+          }
           &.router-link-active {
             background-color: #191c20;
             border-radius: 30px 0px 0px 30px;
+            box-sizing: border-box;
             color: #fba128;
           .icon-allScan {
             background: url("../../assets/images/icon-pandect-active.png") no-repeat;
@@ -233,12 +282,42 @@ export default {
           .icon-report {
             background: url("../../assets/images/icon-report-active.png") no-repeat;
           }
+          .icon-systemUser {
+            background: url("../../assets/images/icon-systemuser-active.png") no-repeat;
+          }
+          .icon-systemCompany {
+            background: url("../../assets/images/icon-systemcompany-active.png") no-repeat;
+          }
+          .icon-systemRole {
+            background: url("../../assets/images/icon-systemrole-active.png") no-repeat;
+          }
+          .icon-vocation {
+            background: url("../../assets/images/icon-vocation-active.png") no-repeat;
+          }
+          .icon-parkDevice {
+            background: url("../../assets/images/icon-parkdevice-active.png") no-repeat;
+          }
           }
         }
          .side_icon {
             background-size: cover;
             width: 30px;
             height: 30px;
+          }
+          .icon-systemUser {
+            background: url("../../assets/images/icon-systemuser.png") no-repeat;
+          }
+          .icon-systemCompany {
+            background: url("../../assets/images/icon-systemcompany.png") no-repeat;
+          }
+          .icon-systemRole {
+            background: url("../../assets/images/icon-systemrole.png") no-repeat;
+          }
+          .icon-vocation {
+            background: url("../../assets/images/icon-vocation.png") no-repeat;
+          }
+          .icon-parkDevice {
+            background: url("../../assets/images/icon-parkdevice.png") no-repeat;
           }
           .icon-allScan {
             background: url("../../assets/images/icon-pandect.png") no-repeat;
@@ -253,14 +332,14 @@ export default {
             background: url("../../assets/images/icon-report.png") no-repeat;
           }
           .side_text {
-            padding-left: 10px;
+            padding-left: 4px;
           }
       }
     }
   }
   .el-main {
     padding: 0;
-    overflow: hidden;
+    overflow-y: scroll;
     background-color: #eee;
   }
 }

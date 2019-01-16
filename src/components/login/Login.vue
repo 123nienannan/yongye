@@ -169,6 +169,14 @@ export default {
     }
   }
 }
-
 </style>
+<style lang="less">
+.login {
+  .el-checkbox__inner {
+    background-color: #1c1303;
+    border: solid 1px #fdd35d;
+  }
+}
+</style>
+
 

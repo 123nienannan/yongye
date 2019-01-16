@@ -5,7 +5,7 @@
       ->
      <span class="current">数据报表</span>
   </div>
-   <el-tabs v-model="activeName">
+   <el-tabs>
     <el-tab-pane label="当前停车记录">
      <search-part></search-part>
      <div class="wrap">
@@ -60,20 +60,44 @@
         </el-pagination>
      </div>
     </el-tab-pane>
-    <el-tab-pane label="历史停车记录">配置管理</el-tab-pane>
-    <el-tab-pane label="车辆违停记录">角色管理</el-tab-pane>
-    <el-tab-pane label="月租缴费记录">定时任务补偿</el-tab-pane>
-    <el-tab-pane label="停车缴费记录">定时任务补偿</el-tab-pane>
-    <el-tab-pane label="排班收费汇总">定时任务补偿</el-tab-pane>
-    <el-tab-pane label="车辆入库统计">定时任务补偿</el-tab-pane>
-    <el-tab-pane label="车辆出库统计">定时任务补偿</el-tab-pane>
-    <el-tab-pane label="停车用户查询">停车用户查询</el-tab-pane>
+    <el-tab-pane label="历史停车记录">
+      <history-park></history-park>
+    </el-tab-pane>
+    <el-tab-pane label="车辆违停记录">
+      <error-park></error-park>
+    </el-tab-pane>
+    <el-tab-pane label="月租缴费记录">
+      <payment-park></payment-park>
+    </el-tab-pane>
+    <el-tab-pane label="停车缴费记录">
+      <parkpayment-park></parkpayment-park>
+    </el-tab-pane>
+    <el-tab-pane label="排班收费汇总">
+      <gather-park></gather-park>
+    </el-tab-pane>
+    <el-tab-pane label="车辆入库统计">
+      <storage-park></storage-park>
+    </el-tab-pane>
+    <el-tab-pane label="车辆出库统计">
+     <output-park></output-park>
+    </el-tab-pane>
+    <el-tab-pane label="停车用户查询">
+     <usersearch-park></usersearch-park>
+    </el-tab-pane>
   </el-tabs>
 </div>
 </template>
 
 <script>
-import searchPart from '@/components/search-part'
+import searchPart from '@/subviews/search-part'
+import historyPark from '@/subviews/history-park'
+import errorPark from '@/subviews/error-park'
+import paymentPark from '@/subviews/payment-park'
+import parkpaymentPark from '@/subviews/parkpayment-park'
+import gatherPark from '@/subviews/gather-park'
+import storagePark from '@/subviews/storage-park'
+import outputPark from '@/subviews/output-park'
+import usersearchPark from '@/subviews/usersearch-park'
 export default {
   data () {
     return {
@@ -82,7 +106,15 @@ export default {
     }
   },
   components: {
-    searchPart
+    searchPart,
+    historyPark,
+    errorPark,
+    paymentPark,
+    parkpaymentPark,
+    gatherPark,
+    storagePark,
+    outputPark,
+    usersearchPark
   },
   methods: {
     tableHeaderColor({ row, column, rowIndex, columnIndex }) {
@@ -122,12 +154,14 @@ export default {
       text-align: right;
     }
   }
-
 }
 </style>
-<style>
-.el-tabs__content {
-    overflow: visible;
+<style lang="less">
+.dataReport {
+    .el-tabs__content {
+        overflow: visible;
+    }
 }
+
 </style>
 

@@ -66,7 +66,7 @@
               </el-upload>
             </el-col>
             <el-col :span="6">
-              <el-button icon="el-icon-plus" class="openUser">开户</el-button>
+              <el-button icon="el-icon-plus" class="openUser" @click="addUser">开户</el-button>
             </el-col>
           </el-row>
         </el-col>
@@ -121,6 +121,11 @@
           prop="address"
           align="center"
           label="操作">
+          <template slot-scope="scope">
+            <el-button class="parkuser_btn" type="text" size="small" @click="amendUser">修改</el-button>
+            <el-button class="parkuser_btn" type="text" size="small">销户</el-button>
+            <el-button class="parkuser_btn" type="text" size="small" @click="keepmonth">包月续期</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <el-pagination
@@ -143,15 +148,29 @@ export default {
             parktype:'',
             userstatus:''
          },
-         parkData:[]
+         parkData:[{
+           date: 7
+         }]
       }
     },
     methods: {
       tableHeaderColor({ row, column, rowIndex, columnIndex }) {
-      if (rowIndex === 0) {
-        return 'background-color: #e4e4e4;'
+          if (rowIndex === 0) {
+            return 'background-color: #e4e4e4;'
+          }
+      },
+      addUser () {
+         this.$router.push({name:'Adduser'})
+         this.$store.commit('changeStatus')
+      },
+      amendUser () {
+        this.$router.push({name:'amendUser'})
+         this.$store.commit('changeStatus')
+      },
+      keepmonth () {
+         this.$router.push({name:'keepMonth'})
+         this.$store.commit('changeStatus')
       }
-    }
   }
 }
 </script>
@@ -248,6 +267,10 @@ export default {
     .el-pagination {
       padding: 12px 0;
       text-align: right;
+    }
+    .parkuser_btn {
+      color: #03c0dd;
+      font-size: 14px;
     }
   }
 
