@@ -1,39 +1,40 @@
 <template>
-<div class="systecompany">
-   <div class="nav">
-     <span>系统设置</span>
-      ->
-     <span class="current">系统公司</span>
-   </div>
-   <div class="topBar">
+<div class="car-park">
+    <div class="topBar">
      <el-form label-width="80px" size="small" :model="searchForm">
       <el-row style="padding-top: 2px;">
-               <el-col :span="6">
-                  <el-form-item label="公司:">
-                     <el-input v-model="searchForm.name" placeholder="请输入公司"></el-input>
-                  </el-form-item>
-               </el-col>
-               <el-col :span="6">
-                   <el-form-item label="联系人:">
-                    <el-input v-model="searchForm.name" placeholder="请输入联系人"></el-input>
-                   </el-form-item>
-               </el-col>
-               <el-col :span="6">
-                    <el-form-item label="电话:">
-                      <el-input v-model="searchForm.name" placeholder="请输入电话"></el-input>
-                    </el-form-item>
-               </el-col>
-            <el-col :span="6">
-              <el-button class="search">查询</el-button>
-              <el-button icon="el-icon-plus" class="openUser" @click="addsystemCompany">公司</el-button>
-            </el-col>
+          <el-col :span="4">
+            <el-form-item label="区域:">
+                <el-input v-model="searchForm.name" placeholder="请输入区域"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
+              <el-form-item label="编号:">
+              <el-input v-model="searchForm.name" placeholder="请输入编号"></el-input>
+              </el-form-item>
+          </el-col>
+          <el-col :span="4">
+              <el-form-item label="名称:">
+                <el-input v-model="searchForm.name" placeholder="请输入名称"></el-input>
+              </el-form-item>
+          </el-col>
+        <el-col :span="10">
+          <el-button class="search">查询</el-button>
+          <el-upload
+            class="upload-demo"
+            :multiple="false"
+            action="">
+            <el-button class="import">批量导入</el-button>
+          </el-upload>
+          <el-button icon="el-icon-plus" class="openUser" @click="addcarSeat">车位</el-button>
+        </el-col>
       </el-row>
      </el-form>
-   </div>
-   <div class="wrapper">
+    </div>
+    <div class="main">
       <el-table
         :header-cell-style="tableHeaderColor"
-        :data="systecompanyData"
+        :data="carparkData"
         stripe
         style="width: 100%">
         <el-table-column
@@ -45,47 +46,55 @@
         <el-table-column
           prop="date"
           align="center"
-          label="公司"
-          width="180">
+          label="名称">
         </el-table-column>
         <el-table-column
-          prop="name"
-          label="地址"
+          prop="date"
           align="center"
-          width="180">
+          label="车位编号">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="园区地址">
+          label="所属区域">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="联系人姓名">
+          label="授权类型">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="电话">
+          label="授权人或公司">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="管理员">
+          label="最近使用车牌">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="物业公司">
+          label="车库">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
           align="center"
-          label="所属物业公司">
+          label="固定车位">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="date"
+          align="center"
+          label="使用中">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="状态">
+        </el-table-column>
+        <el-table-column
+          prop="date"
           align="center"
           label="备注">
         </el-table-column>
@@ -94,9 +103,9 @@
           align="center"
           label="操作">
           <template slot-scope="scope">
-            <el-button class="parkuser_btn" type="text" size="small" @click="amendsystemCompany">修改</el-button>
-            <el-button class="parkuser_btn" type="text" size="small" @click="stopRelation">门禁关联</el-button>
-          </template>
+          <el-button class="parkuser_btn" @click="keepgarage" type="text" size="small">维护</el-button>
+          <el-button class="parkuser_btn" type="text" size="small">删除</el-button>
+        </template>
         </el-table-column>
       </el-table>
       <el-pagination
@@ -104,50 +113,45 @@
         layout="prev, pager, next"
         :total="100">
       </el-pagination>
-   </div>
+    </div>
 </div>
 </template>
 
 <script>
 export default {
-    data () {
-      return {
-         searchForm: {
-            name:''
-         },
-         systecompanyData:[{
-           date: 7
-         }]
+ name:"region",
+ data () {
+   return {
+    carparkData:[{
+      data:1
+    }],
+    searchForm:{
+      name:''
+    }
+   }
+ },
+ methods: {
+   addcarSeat () {
+     this.$router.push({name:'addcarSeat'})
+     this.$store.commit('changedevice')
+   },
+   keepgarage () {
+        this.$router.push({name:'keepcarSeat'})
+        this.$store.commit('changedevice')
+   },
+   tableHeaderColor({ row, column, rowIndex, columnIndex }) {
+      if (rowIndex === 0) {
+        return 'background-color: #e4e4e4;'
       }
-    },
-    methods: {
-      tableHeaderColor({ row, column, rowIndex, columnIndex }) {
-          if (rowIndex === 0) {
-            return 'background-color: #e4e4e4;'
-          }
-      },
-      addsystemCompany () {
-         this.$router.push({name:'addsystemCompany'})
-         this.$store.commit('changesyatemcompanyStatus')
-      },
-      amendsystemCompany () {
-        this.$router.push({name:'amendsystemCompany'})
-         this.$store.commit('changesyatemcompanyStatus')
-      },
-      stopRelation () {
-
-      }
-
-  }
+   },
+ }
 }
 </script>
 
 <style lang="less" scoped>
-.systecompany {
+.car-park {
   width: 100%;
   height: 100%;
-  padding: 19px 58px 0 60px;
-  box-sizing: border-box;
   .nav {
     margin-bottom: 25px;
     span {
@@ -168,6 +172,7 @@ export default {
       justify-content: space-between;
       align-items: center;
       .el-form {
+        width: 100%;
         height: 100%;
         .el-form-item {
           margin-bottom: 0px;
@@ -186,6 +191,8 @@ export default {
           rgba(0, 0, 0, 0.65);
    }
    .upload-demo {
+     margin-left: 6px;
+     display: inline-block;
      .el-upload-list {
        display: none;
      }
@@ -208,7 +215,7 @@ export default {
       }
    }
     .openUser {
-        margin-left: 6px;
+        margin-left: -4px;
         background-image: linear-gradient(
             #02a896,
             #02a896),
@@ -227,24 +234,31 @@ export default {
       border-radius: 4px;
     }
   }
-  .wrapper {
-    box-shadow: 0px 2px 3px 0px
-		rgba(0, 0, 0, 0.3);
-	  border: 1px solid#dcdcdc;
-    margin-top: 10px;
-    .el-pagination {
-      padding: 12px 0;
-      text-align: right;
-    }
-    .parkuser_btn {
-      color: #03c0dd;
-      font-size: 14px;
+  .main {
+      box-shadow: 0px 2px 3px 0px
+      rgba(0, 0, 0, 0.3);
+      border: solid 1px #dcdcdc;
+      margin-top: 10px;
+      .el-pagination {
+        padding: 12px 0;
+        text-align: right;
+      }
+      .parkuser_btn {
+        color: #03c0dd;
+        font-size: 14px;
+      }
+  }
+  .dialog-footer {
+    button {
+      width: 60px;
+      height: 30px;
+      padding: 0;
     }
   }
 }
 </style>
 <style lang="less">
-.systecompany {
+.car-park {
   .el-input__inner {
       background-image: linear-gradient(
         #eeeeee,
@@ -259,4 +273,3 @@ export default {
   }
 }
 </style>
-

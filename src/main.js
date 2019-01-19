@@ -7,6 +7,7 @@ import store from './store'
 import '@/assets/css/common.css'
 import '../theme/index.css'
 import ElementUI from 'element-ui'
+import $ from 'jquery'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

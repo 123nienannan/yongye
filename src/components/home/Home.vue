@@ -10,7 +10,7 @@
           <div class="info_pic"><img src=""></div>
           <el-dropdown @command="handleCommand" trigger="click">
                   <span class="el-dropdown-link">
-                    聂男男<i class="el-icon-arrow-down el-icon--right"></i>
+                    男男<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                     <el-dropdown-menu slot="dropdown">
                       <el-dropdown-item>退出</el-dropdown-item>
@@ -65,13 +65,13 @@
            <transition name="fade">
              <ul v-if="showMouldeTwo">
                 <li>
-                  <router-link :to="{name: 'Systemuser'}">
+                  <router-link :to="{name: 'Systemuser'}" :class="{'showsystemuser-hignlight':systemstatus}">
                     <i class="side_icon icon-systemUser"></i>
                     <span class="side_text">系统用户</span>
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{name: 'Systemcompany'}">
+                  <router-link :to="{name: 'Systemcompany'}" :class="{'showsystemcompany-hignlight':systemcompanystatus}">
                     <i class="side_icon icon-systemCompany"></i>
                     <span class="side_text">系统公司</span>
                   </router-link>
@@ -83,13 +83,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{name: 'Vocation'}">
-                    <i class="side_icon icon-vocation"></i>
-                    <span class="side_text">节假日设定</span>
-                  </router-link>
-                </li>
-                <li>
-                  <router-link :to="{name: 'Parkdevice'}">
+                  <router-link :to="{name: 'Parkdevice'}" :class="{'parkdevice-hignlight':devicestatus}">
                     <i class="side_icon icon-parkDevice"></i>
                     <span class="side_text">停车设备</span>
                   </router-link>
@@ -118,6 +112,15 @@ export default {
     computed: {
       status () {
        return this.$store.state.nowVal
+      },
+      systemstatus () {
+        return this.$store.state.changeVal
+      },
+      systemcompanystatus () {
+        return this.$store.state.systemcompanyVal
+      },
+      devicestatus () {
+        return this.$store.state.deviceVal
       }
     },
     watch: {
@@ -148,6 +151,37 @@ export default {
            this.$store.commit('changeStatus')
           }else {
             this.$store.commit('keepNative')
+          }
+
+          if(this.$route.name == 'addsystemUser' || this.$route.name == 'amendsystemUser') {
+           this.$store.commit('changesyatemStatus')
+          }else {
+            this.$store.commit('keepsystemNative')
+          }
+
+          if(this.$route.name == 'addsystemCompany' || this.$route.name == 'amendsystemCompany') {
+           this.$store.commit('changesyatemcompanyStatus')
+          }else {
+            this.$store.commit('keepsystemcompanyNative')
+          }
+          if(this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' ||
+          this.$route.name == 'addmonitorRegion' ||  this.$route.name == 'keepmonitorRegion' ||
+          this.$route.name == 'monitorMap' || this.$route.name == 'addGarage' ||
+          this.$route.name == 'mapPark' || this.$route.name == 'keepGarage'
+           || this.$route.name=='addregionGarage' || this.$route.name=='keepregionGarage') {
+           this.$store.commit('changedevice')
+          }else {
+            this.$store.commit('keepdevice')
+          }
+
+          if(this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' || this.$route.name == 'keepmonitorRegion' || this.$route.name == 'addmonitorRegion' || this.$route.name == 'mapPark' || this.$route.name == 'keepregionGarage' || this.$route.name == 'addregionGarage' ||
+          this.$route.name == 'keepGarage' || this.$route.name == 'addGarage' ||
+          this.$route.name == 'amendsystemCompany' || this.$route.name == 'addsystemCompany' ||
+          this.$route.name == 'amendsystemUser' || this.$route.name == 'Systemuser' ||
+          this.$route.name == 'Systemcompany' || this.$route.name == 'addsystemUser' ||
+          this.$route.name == 'Systemrole' || this.$route.name == 'Parkdevice') {
+            this.showMouldeTwo = true
+            this.showMoulde = false
           }
       }
     }
@@ -256,6 +290,24 @@ export default {
           color: #fff;
           font-size: 14px;
           text-decoration: none;
+          &.parkdevice-hignlight {
+            .icon-parkDevice {
+              background: url("../../assets/images/icon-parkdevice-active.png") no-repeat;
+            }
+            background-color: #191c20;
+            border-radius: 30px 0px 0px 30px;
+            box-sizing: border-box;
+            color: #fba128;
+          }
+          &.showsystemcompany-hignlight {
+            .icon-systemCompany {
+              background: url("../../assets/images/icon-systemcompany-active.png") no-repeat;
+            }
+              background-color: #191c20;
+              border-radius: 30px 0px 0px 30px;
+              box-sizing: border-box;
+              color: #fba128;
+          }
           &.show-hignlight {
             .icon-vip {
                background: url("../../assets/images/icon-vip-active.png") no-repeat;
@@ -264,6 +316,15 @@ export default {
             border-radius: 30px 0px 0px 30px;
             box-sizing: border-box;
             color: #fba128;
+          }
+          &.showsystemuser-hignlight {
+              .icon-systemUser {
+                background: url("../../assets/images/icon-systemuser-active.png") no-repeat;
+              }
+              background-color: #191c20;
+              border-radius: 30px 0px 0px 30px;
+              box-sizing: border-box;
+              color: #fba128;
           }
           &.router-link-active {
             background-color: #191c20;

@@ -6,12 +6,74 @@
      <span class="current">运维管理</span>
   </div>
   <el-tabs>
+    <el-tab-pane label="收费设置" class="two">
+      <div class="centre">
+        <p>收费设置</p>
+        <el-form ref="achargeForm" :model="achargeForm" label-width="130px">
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="收费名称:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="免费时长:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="前半小时收费金额:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="前半小时收费金额:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="10">
+              <el-form-item label="单次限额上限:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+           <el-row>
+            <el-col :span="10">
+               <el-form-item label="付费后不计费时间:">
+                <el-input v-model="achargeForm.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14"></el-col>
+          </el-row>
+          <el-form-item label="错峰时间段:">
+           <input class="range-slider" type="hidden" v-model="duringData"/>
+          </el-form-item>
+        </el-form>
+        <div class="charge_foot">
+          <el-button class="cancle">取消</el-button>
+          <el-button class="confirm">确认</el-button>
+        </div>
+      </div>
+    </el-tab-pane>
     <el-tab-pane class="first" label="包月续期方案">
-      <el-button class="fan" icon="el-icon-plus" @click="dialogVisible = true">方案</el-button>
+      <el-button class="fan" icon="el-icon-plus" @click="adialogVisible = true">方案</el-button>
       <div class="main">
         <el-table
           :header-cell-style="tableHeaderColor"
-          :data="opertionData"
+          :data="aopertionData"
           stripe
           style="width: 100%">
           <el-table-column
@@ -47,7 +109,7 @@
             align="center"
             label="操作">
             <template slot-scope="scope">
-            <el-button class="parkuser_btn" @click="amenddialogVisible=true" type="text" size="small">修改</el-button>
+            <el-button class="parkuser_btn" @click="aamendadialogVisible=true" type="text" size="small">修改</el-button>
             <el-button class="parkuser_btn" type="text" size="small">销户</el-button>
           </template>
           </el-table-column>
@@ -61,93 +123,64 @@
       <!-- 新增方案弹框 -->
       <el-dialog
           title="新增-包月续期方案"
-          :visible.sync="dialogVisible"
+          :visible.sync="adialogVisible"
           width="35%"
           center
           :before-close="handleClose">
-          <el-form ref="addForm" :model="addForm" label-width="80px">
+          <el-form ref="aaddForm" :model="aaddForm" label-width="80px">
               <el-form-item label="缴费名称:">
-                <el-input v-model="addForm.name"></el-input>
+                <el-input v-model="aaddForm.name"></el-input>
               </el-form-item>
               <el-form-item label="价格:">
-                <el-input v-model="addForm.name" class="price"></el-input>
+                <el-input v-model="aaddForm.name" class="price"></el-input>
                 元续期一个月
               </el-form-item>
               <el-form-item label="停车类型:">
-                <el-input v-model="addForm.name"></el-input>
+                <el-input v-model="aaddForm.name"></el-input>
               </el-form-item>
               <el-form-item label="备注:">
-                <el-input type="textarea" v-model="addForm.name"></el-input>
+                <el-input type="textarea" v-model="aaddForm.name"></el-input>
               </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            <el-button @click="adialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="adialogVisible = false">确 定</el-button>
           </span>
       </el-dialog>
       <!-- 修改方案弹框 -->
       <el-dialog
           title="修改-包月续期方案"
-          :visible.sync="amenddialogVisible"
+          :visible.sync="aamendadialogVisible"
           width="35%"
           center
           :before-close="handleClose">
-          <el-form ref="amendForm" :model="amendForm" label-width="80px">
+          <el-form ref="aamendForm" :model="aamendForm" label-width="80px">
               <el-form-item label="缴费名称:">
-                <el-input v-model="amendForm.name"></el-input>
+                <el-input v-model="aamendForm.name"></el-input>
               </el-form-item>
               <el-form-item label="价格:">
-                <el-input v-model="amendForm.name" class="price"></el-input>
+                <el-input v-model="aamendForm.name" class="price"></el-input>
                 元续期一个月
               </el-form-item>
               <el-form-item label="停车类型:">
-                <el-input v-model="amendForm.name"></el-input>
+                <el-input v-model="aamendForm.name"></el-input>
               </el-form-item>
               <el-form-item label="备注:">
-                <el-input type="textarea" v-model="amendForm.name"></el-input>
+                <el-input type="textarea" v-model="aamendForm.name"></el-input>
               </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-            <el-button @click="amenddialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="amenddialogVisible = false">确 定</el-button>
+            <el-button @click="aamendadialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="aamendadialogVisible = false">确 定</el-button>
           </span>
       </el-dialog>
     </el-tab-pane>
-    <el-tab-pane label="收费设置" class="two">
-      <div class="centre">
-        <p>收费设置</p>
-        <el-form ref="chargeForm" :model="chargeForm" label-width="130px">
-          <el-form-item label="收费名称:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="免费时长:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="前半小时收费金额:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="前半小时收费金额:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="单次限额上限:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-          <el-form-item label="付费后不计费时间:">
-            <el-input v-model="chargeForm.name"></el-input>
-          </el-form-item>
-        </el-form>
-        <div class="charge_foot">
-          <el-button class="cancle">取消</el-button>
-          <el-button class="confirm">确认</el-button>
-        </div>
-      </div>
-    </el-tab-pane>
     <el-tab-pane class="three" label="电子代金券">
-        <el-button class="ticket" icon="el-icon-plus" @click="showTicketDilog = true">电子代金券</el-button>
+        <el-button class="ticket" icon="el-icon-plus" @click="ashowTicketDilog = true">电子代金券</el-button>
         <div class="main">
           <el-table
             :header-cell-style="tableHeaderColor"
-            :data="electronicticketData "
+            :data="aelectronicticketData "
             stripe
             style="width: 100%">
             <el-table-column
@@ -188,7 +221,7 @@
               align="center"
               label="操作">
               <template slot-scope="scope">
-              <el-button class="parkuser_btn" @click="showanendTicketDilog=true" type="text" size="small">修改</el-button>
+              <el-button class="parkuser_btn" @click="ashowanendTicketDilog=true" type="text" size="small">修改</el-button>
               <el-button class="parkuser_btn" type="text" size="small">删除</el-button>
             </template>
             </el-table-column>
@@ -202,113 +235,122 @@
          <!-- 新增方案弹框 -->
         <el-dialog
             title="新增-电子代金券"
-            :visible.sync="showTicketDilog"
+            :visible.sync="ashowTicketDilog"
             width="30%"
             center
             :before-close="handleClose">
-            <el-form ref="addticketForm" :model="addticketForm" label-width="80px">
+            <el-form ref="aaddticketForm" :model="aaddticketForm" label-width="80px">
                 <el-form-item label="收费主题:">
-                  <el-input v-model="addticketForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="收费标准:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
-                  元/小时，0 - 50 小时
-                  <el-input v-model="addticketForm.name" class="special double"></el-input>
-                  元/小时，> 50 小时
+                  <el-input v-model="aaddticketForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="售出时长:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   小时
                 </el-form-item>
                 <el-form-item label="原价:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   元
                 </el-form-item>
                 <el-form-item label="实际售价:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   元
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-              <el-button @click="showTicketDilog = false">取 消</el-button>
-              <el-button type="primary" @click="showTicketDilog = false">确 定</el-button>
+              <el-button @click="ashowTicketDilog = false">取 消</el-button>
+              <el-button type="primary" @click="ashowTicketDilog = false">确 定</el-button>
             </span>
         </el-dialog>
         <!-- 修改方案弹框 -->
         <el-dialog
             title="修改-电子代金券"
-            :visible.sync="showanendTicketDilog"
+            :visible.sync="ashowanendTicketDilog"
             width="30%"
             center
             :before-close="handleClose">
-            <el-form ref="addticketForm" :model="addticketForm" label-width="80px">
+            <el-form ref="aaddticketForm" :model="aaddticketForm" label-width="80px">
                 <el-form-item label="收费主题:">
-                  <el-input v-model="addticketForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="收费标准:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
-                  元/小时，0 - 50 小时
-                  <el-input v-model="addticketForm.name" class="special double"></el-input>
-                  元/小时，> 50 小时
+                  <el-input v-model="aaddticketForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="售出时长:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   小时
                 </el-form-item>
                 <el-form-item label="原价:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   元
                 </el-form-item>
                 <el-form-item label="实际售价:">
-                  <el-input v-model="addticketForm.name" class="special"></el-input>
+                  <el-input v-model="aaddticketForm.name" class="special"></el-input>
                   元
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-              <el-button @click="showanendTicketDilog = false">取 消</el-button>
-              <el-button type="primary" @click="showanendTicketDilog = false">确 定</el-button>
+              <el-button @click="ashowanendTicketDilog = false">取 消</el-button>
+              <el-button type="primary" @click="ashowanendTicketDilog = false">确 定</el-button>
             </span>
         </el-dialog>
     </el-tab-pane>
+    <el-tab-pane class="four" label="节假日设定">
+    </el-tab-pane>
+    <el-tab-pane class="five" label="设备报警记录">
+
+    </el-tab-pane>
+
   </el-tabs>
-
-
 </div>
 </template>
 
 <script>
-
+import $ from 'jquery'
+import '@/lib/jquery.range.js'
+import '@/lib/jquery.range.css'
 export default {
   data() {
     return {
-      dialogVisible: false,
-      amenddialogVisible:false,
-      showTicketDilog:false,
-      showanendTicketDilog:false,
-      chargeForm: {
+      duringData:"480,1320",
+      adialogVisible: false,
+      aamendadialogVisible:false,
+      ashowTicketDilog:false,
+      ashowanendTicketDilog:false,
+      achargeForm: {
         name:''
       },
-      amendForm:{
+      aamendForm:{
         name:''
       },
-      addForm:{
+      aaddForm:{
         name:''
       },
-      opertionData: [{
+      aopertionData: [{
         data:1
       }],
-      electronicticketData:[{
+      aelectronicticketData:[{
         data:9
       }],
-      addticketForm:{
+      aaddticketForm:{
         name:''
       },
-      amendticketForm:{
+      aamendticketForm:{
         name:''
       }
     }
   },
-
+  mounted () {
+     this.$nextTick(function () {
+         $('.range-slider').jRange({
+          from: 0,
+          to: 1440,
+          step:30,
+          scale: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
+          format: '%s',
+          width: 400,
+          showLabels: true,
+          showScale: true,
+          isRange : true
+        })
+    })
+  },
   methods: {
     tableHeaderColor({ row, column, rowIndex, columnIndex }) {
       if (rowIndex === 0) {
