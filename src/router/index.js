@@ -27,6 +27,27 @@ import keepmonitorRegion from '@/components/keepmonitorregion'
 import monitorMap from '@/components/monitormap'
 import addcarSeat from '@/components/addcarseat'
 import keepcarSeat from '@/components/keepcarseat'
+import addMechanical from '@/components/addmechanical'
+import keepMechanical from '@/components/keepmechanical'
+import addScreen from '@/components/addscreen'
+import keepScreen from '@/components/keepscreen'
+import addAlleyway from '@/components/addalleyway'
+import keepAlleyway from '@/components/keepalleyway'
+import addGate from '@/components/addgate'
+import keepGate from '@/components/keepgate'
+import addCamera from '@/components/addcamera'
+import keepCamera from '@/components/keepcamera'
+import addcarCamera from '@/components/addcarcamera'
+import keepcarCamera from '@/components/keepcarcamera'
+import addGuidance from '@/components/addGuidance'
+import keepGuidance from '@/components/keepGuidance'
+import addBallot from '@/components/addballot'
+import keepBallot from '@/components/keepballot'
+import addshowScreen from '@/components/addshowscreen'
+import keepshowScreen from '@/components/keepshowscreen'
+import addBind from '@/components/addbind'
+import keepBind from '@/components/keepbind'
+import personInfo from '@/views/personinfo/personInfo'
 
 Vue.use(Router)
 
@@ -47,6 +68,111 @@ export default new Router({
       name: 'Home',
       component: Home,
       children: [
+        {
+          path:'/personinfo',
+          name:'personInfo',
+          component:personInfo
+        },
+        {
+          path: '/addbind',
+          name: 'addBind',
+          component: addBind,
+        },
+        {
+          path: '/keepbind',
+          name: 'keepBind',
+          component: keepBind,
+        },
+        {
+          path: '/addshowscreen',
+          name: 'addshowScreen',
+          component: addshowScreen,
+        },
+        {
+          path: '/keepshowscreen',
+          name: 'keepshowScreen',
+          component: keepshowScreen,
+        },
+        {
+          path: '/addballot',
+          name: 'addBallot',
+          component: addBallot,
+        },
+        {
+          path: '/keepballot',
+          name: 'keepBallot',
+          component: keepBallot,
+        },
+        {
+          path: '/addguidance',
+          name: 'addGuidance',
+          component: addGuidance,
+        },
+        {
+          path: '/keepguidance',
+          name: 'keepGuidance',
+          component: keepGuidance,
+        },
+        {
+          path: '/addcarcamera',
+          name: 'addcarCamera',
+          component: addcarCamera,
+        },
+        {
+          path: '/keepcarcamera',
+          name: 'keepcarCamera',
+          component: keepcarCamera,
+        },
+        {
+          path: '/addcamera',
+          name: 'addCamera',
+          component: addCamera,
+        },
+        {
+          path: '/keepcamera',
+          name: 'keepCamera',
+          component: keepCamera,
+        },
+        {
+          path: '/keepgate',
+          name: 'keepGate',
+          component: keepGate,
+        },
+        {
+          path: '/addgate',
+          name: 'addGate',
+          component: addGate,
+        },
+        {
+          path: '/keepalleyway',
+          name: 'keepAlleyway',
+          component: keepAlleyway,
+        },
+        {
+          path: '/addalleyway',
+          name: 'addAlleyway',
+          component: addAlleyway,
+        },
+        {
+          path: '/keepscreen',
+          name: 'keepScreen',
+          component: keepScreen,
+        },
+        {
+          path: '/addscreen',
+          name: 'addScreen',
+          component: addScreen,
+        },
+        {
+          path: '/keepmechanical',
+          name: 'keepMechanical',
+          component: keepMechanical,
+        },
+        {
+          path: '/addmechanical',
+          name: 'addMechanical',
+          component: addMechanical,
+        },
         {
           path: '/keepcarseat',
           name: 'keepcarSeat',

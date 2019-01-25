@@ -13,7 +13,8 @@
                     男男<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
                     <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item>退出</el-dropdown-item>
+                      <el-dropdown-item command='1'>个人中心</el-dropdown-item>
+                      <el-dropdown-item command='2'>退出</el-dropdown-item>
                     </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -143,9 +144,12 @@ export default {
 
     },
     methods: {
-      handleCommand () {
-
+      handleCommand (command) {
+         if(command == 1) {
+          this.$router.push({name:'personInfo'})
+         }
       },
+
       isTab() {
           if(this.$route.name == 'Adduser' || this.$route.name == 'amendUser' || this.$route.name == 'keepMonth') {
            this.$store.commit('changeStatus')
@@ -164,24 +168,51 @@ export default {
           }else {
             this.$store.commit('keepsystemcompanyNative')
           }
-          if(this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' ||
-          this.$route.name == 'addmonitorRegion' ||  this.$route.name == 'keepmonitorRegion' ||
-          this.$route.name == 'monitorMap' || this.$route.name == 'addGarage' ||
-          this.$route.name == 'mapPark' || this.$route.name == 'keepGarage'
-           || this.$route.name=='addregionGarage' || this.$route.name=='keepregionGarage') {
-           this.$store.commit('changedevice')
-          }else {
-            this.$store.commit('keepdevice')
-          }
+          if(this.$route.name == 'addBind' || this.$route.name == 'keepBind' ||
+            this.$route.name == 'addshowScreen' || this.$route.name == 'keepshowScreen' ||
+            this.$route.name == 'addBallot' || this.$route.name == 'keepBallot' ||
+            this.$route.name == 'addGuidance' || this.$route.name == 'keepGuidance' ||
+            this.$route.name == 'addcarCamera' || this.$route.name == 'keepcarCamera' ||
+            this.$route.name == 'addCamera' || this.$route.name == 'keepCamera' ||
+            this.$route.name == 'keepGate' || this.$route.name == 'addGate' ||
+            this.$route.name == 'addAlleyway' || this.$route.name == 'keepAlleyway' ||
+            this.$route.name == 'keepScreen' || this.$route.name == 'addScreen' ||
+            this.$route.name == 'keepMechanical' || this.$route.name == 'addMechanical' ||
+            this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' ||
+            this.$route.name == 'addmonitorRegion' ||  this.$route.name == 'keepmonitorRegion' ||
+            this.$route.name == 'monitorMap' || this.$route.name == 'addGarage' ||
+            this.$route.name == 'mapPark' || this.$route.name == 'keepGarage'
+            || this.$route.name=='addregionGarage' || this.$route.name=='keepregionGarage') {
+            this.$store.commit('changedevice')
+            }else {
+              this.$store.commit('keepdevice')
+            }
 
-          if(this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' || this.$route.name == 'keepmonitorRegion' || this.$route.name == 'addmonitorRegion' || this.$route.name == 'mapPark' || this.$route.name == 'keepregionGarage' || this.$route.name == 'addregionGarage' ||
-          this.$route.name == 'keepGarage' || this.$route.name == 'addGarage' ||
-          this.$route.name == 'amendsystemCompany' || this.$route.name == 'addsystemCompany' ||
-          this.$route.name == 'amendsystemUser' || this.$route.name == 'Systemuser' ||
-          this.$route.name == 'Systemcompany' || this.$route.name == 'addsystemUser' ||
-          this.$route.name == 'Systemrole' || this.$route.name == 'Parkdevice') {
-            this.showMouldeTwo = true
-            this.showMoulde = false
+          if(this.$route.name == 'addBind' || this.$route.name == 'keepBind' ||
+            this.$route.name == 'addshowScreen' || this.$route.name == 'keepshowScreen' ||
+            this.$route.name == 'addBallot' || this.$route.name == 'keepBallot' ||
+            this.$route.name == 'addGuidance' || this.$route.name == 'keepGuidance' ||
+            this.$route.name == 'addcarCamera' || this.$route.name == 'keepcarCamera' ||
+            this.$route.name == 'addCamera' || this.$route.name == 'keepCamera' ||
+            this.$route.name == 'keepGate' || this.$route.name == 'addGate' ||
+            this.$route.name == 'addAlleyway' || this.$route.name == 'keepAlleyway' ||
+            this.$route.name == 'keepScreen' || this.$route.name == 'addScreen' ||
+            this.$route.name == 'keepMechanical' || this.$route.name == 'addMechanical' ||
+            this.$route.name == 'addcarSeat' || this.$route.name == 'keepcarSeat' ||
+            this.$route.name == 'keepmonitorRegion' || this.$route.name == 'addmonitorRegion' ||
+            this.$route.name == 'mapPark' || this.$route.name == 'keepregionGarage' ||
+            this.$route.name == 'addregionGarage' ||
+            this.$route.name == 'keepGarage' || this.$route.name == 'addGarage' ||
+            this.$route.name == 'amendsystemCompany' || this.$route.name == 'addsystemCompany' ||
+            this.$route.name == 'amendsystemUser' || this.$route.name == 'Systemuser' ||
+            this.$route.name == 'Systemcompany' || this.$route.name == 'addsystemUser' ||
+            this.$route.name == 'Systemrole' || this.$route.name == 'Parkdevice') {
+              this.showMouldeTwo = true
+              this.showMoulde = false
+          }
+          if(this.$route.name == 'personInfo') {
+              this.showMouldeTwo = false
+              this.showMoulde = false
           }
       }
     }

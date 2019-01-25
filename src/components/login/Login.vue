@@ -5,6 +5,7 @@
     <div class="info">
        <div class="title">永业公寓</div>
        <div class="line"></div>
+       <div class="park-text">停车后台管理系统</div>
        <div class="username">
          <input type="text" v-model="username" placeholder="用户名">
          <div>请输入用户名</div>
@@ -86,6 +87,13 @@ export default {
         width: 350px;
         height: 2px;
         background-color: #fdd35d;
+      }
+      .park-text {
+        margin-top: 15px;
+        font-size: 24px;
+        color: #fff;
+        letter-spacing: 3px;
+        text-align: center;
         margin-bottom: 39px;
       }
       .username {

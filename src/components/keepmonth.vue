@@ -2,7 +2,7 @@
   <div class="keepmonth">
     <div class="keepmonth_top">
       <i @click="comeback" class="el-icon-back"></i>
-      <span>开户</span>
+      <span>包月续期</span>
     </div>
     <div class="keepmonth_main">
       <p>停车用户基本信息</p>

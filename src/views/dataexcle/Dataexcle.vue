@@ -8,57 +8,6 @@
    <el-tabs>
     <el-tab-pane label="当前停车记录">
      <search-part></search-part>
-     <div class="wrap">
-        <el-table
-          :header-cell-style="tableHeaderColor"
-          :data="reportData"
-          stripe
-          style="width: 100%">
-          <el-table-column
-            type="index"
-            label="序号"
-            align="center"
-            width="50">
-          </el-table-column>
-          <el-table-column
-            prop="date"
-            align="center"
-            label="车牌"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="车辆类型"
-            align="center"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            align="center"
-            label="进场时间">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            align="center"
-            label="车位编号">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            align="center"
-            label="进场图片">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            align="center"
-            label="车位照片">
-          </el-table-column>
-        </el-table>
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="100">
-        </el-pagination>
-     </div>
     </el-tab-pane>
     <el-tab-pane label="历史停车记录">
       <history-park></history-park>
@@ -84,6 +33,9 @@
     <el-tab-pane label="停车用户查询">
      <usersearch-park></usersearch-park>
     </el-tab-pane>
+    <el-tab-pane label="设备报警记录">
+      <policeCall></policeCall>
+    </el-tab-pane>
   </el-tabs>
 </div>
 </template>
@@ -98,11 +50,11 @@ import gatherPark from '@/subviews/gather-park'
 import storagePark from '@/subviews/storage-park'
 import outputPark from '@/subviews/output-park'
 import usersearchPark from '@/subviews/usersearch-park'
+import policeCall from '@/subviews/police-call'
 export default {
   data () {
     return {
       activeName: '',
-      reportData:[]
     }
   },
   components: {
@@ -114,14 +66,11 @@ export default {
     gatherPark,
     storagePark,
     outputPark,
-    usersearchPark
+    usersearchPark,
+    policeCall
   },
   methods: {
-    tableHeaderColor({ row, column, rowIndex, columnIndex }) {
-      if (rowIndex === 0) {
-        return 'background-color: #e4e4e4;'
-      }
-    }
+
   }
 }
 </script>
@@ -139,19 +88,6 @@ export default {
       &.current {
         color: #fba128;
       }
-    }
-  }
-  .el-tabs__content {
-    overflow: visible;
-  }
-  .wrap {
-    box-shadow: 0px 2px 3px 0px
-		rgba(0, 0, 0, 0.3);
-	  border: solid 1px #dcdcdc;
-    margin-top: 10px;
-    .el-pagination {
-      padding: 12px 0;
-      text-align: right;
     }
   }
 }

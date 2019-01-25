@@ -36,7 +36,7 @@
           </el-row>
           <el-row>
             <el-col :span="10">
-              <el-form-item label="前半小时收费金额:">
+              <el-form-item label="后半小时收费金额:">
                 <el-input v-model="achargeForm.name"></el-input>
               </el-form-item>
             </el-col>
@@ -133,7 +133,6 @@
               </el-form-item>
               <el-form-item label="价格:">
                 <el-input v-model="aaddForm.name" class="price"></el-input>
-                元续期一个月
               </el-form-item>
               <el-form-item label="停车类型:">
                 <el-input v-model="aaddForm.name"></el-input>
@@ -160,7 +159,6 @@
               </el-form-item>
               <el-form-item label="价格:">
                 <el-input v-model="aamendForm.name" class="price"></el-input>
-                元续期一个月
               </el-form-item>
               <el-form-item label="停车类型:">
                 <el-input v-model="aamendForm.name"></el-input>
@@ -292,16 +290,14 @@
         </el-dialog>
     </el-tab-pane>
     <el-tab-pane class="four" label="节假日设定">
+      <Holiday></Holiday>
     </el-tab-pane>
-    <el-tab-pane class="five" label="设备报警记录">
-
-    </el-tab-pane>
-
-  </el-tabs>
+   </el-tabs>
 </div>
 </template>
 
 <script>
+import Holiday from '@/subviews/holiday'
 import $ from 'jquery'
 import '@/lib/jquery.range.js'
 import '@/lib/jquery.range.css'
@@ -336,15 +332,20 @@ export default {
       }
     }
   },
+  components: {
+    Holiday,
+  },
   mounted () {
      this.$nextTick(function () {
          $('.range-slider').jRange({
           from: 0,
           to: 1440,
-          step:30,
-          scale: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
+          step:5,
+          scale: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00',
+          '09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00',
+          '19:00','20:00','21:00','22:00','23:00','24:00'],
           format: '%s',
-          width: 400,
+          width: 900,
           showLabels: true,
           showScale: true,
           isRange : true
@@ -401,7 +402,6 @@ export default {
     .price {
       width: 60%;
     }
-
     .fan {
       padding: 0;
       width: 92px;
@@ -435,12 +435,12 @@ export default {
         border-bottom: 1px solid #ddd;
       }
       .charge_foot {
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      button {
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+       button {
         width: 150px;
         height: 40px;
         border: none;
@@ -460,8 +460,8 @@ export default {
             #ffffff,
             #ffffff);
         }
+       }
       }
-    }
     }
     .el-form {
       margin-top: 18px;
@@ -511,7 +511,10 @@ export default {
     .el-dialog--center .el-dialog__body {
       padding: 25px 25px 0px;
     }
-
+    .slider-container {
+        padding-top: 20px !important;
+        margin-left: 15px !important;
+      }
 }
 
 </style>

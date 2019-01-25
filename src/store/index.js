@@ -7,13 +7,14 @@ let store = new Vuex.Store({
  state: {
   nowVal:false,
   changeVal: false,
+  deviceVal:false,
   systemcompanyVal: false,
-  deviceVal:false
- },
- getters: {
-
+  activeName:"first"
  },
  mutations: {
+   changeActiveName (state,data) {
+     state.activeName = data
+   },
    changeStatus (state) {
      state.nowVal = true
    },
@@ -37,7 +38,7 @@ let store = new Vuex.Store({
    },
    keepdevice (state) {
      state.deviceVal = false
-   }
+   },
 
  }
 })

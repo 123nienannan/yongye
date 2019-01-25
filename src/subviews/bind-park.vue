@@ -1,21 +1,16 @@
 <template>
-<div class="car-park">
+<div class="bindPark">
     <div class="topBar">
-     <el-form label-width="80px" size="small" :model="searchForm">
+     <el-form label-width="100px" size="small" :model="searchForm">
       <el-row style="padding-top: 2px;">
           <el-col :span="4">
-            <el-form-item label="区域:">
-                <el-input v-model="searchForm.name" placeholder="请输入区域"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="4">
-              <el-form-item label="编号:">
-              <el-input v-model="searchForm.name" placeholder="请输入编号"></el-input>
+              <el-form-item label="连接设备ID:">
+                <el-input v-model="searchForm.name" placeholder="请输入连接设备ID"></el-input>
               </el-form-item>
           </el-col>
           <el-col :span="4">
-              <el-form-item label="名称:">
-                <el-input v-model="searchForm.name" placeholder="请输入名称"></el-input>
+              <el-form-item label="车位编号:">
+              <el-input v-model="searchForm.name" placeholder="请输入车位编号"></el-input>
               </el-form-item>
           </el-col>
         <el-col :span="10">
@@ -26,7 +21,7 @@
             action="">
             <el-button class="import">批量导入</el-button>
           </el-upload>
-          <el-button icon="el-icon-plus" class="openUser" @click="addcarSeat">车位</el-button>
+          <el-button icon="el-icon-plus" class="openUser" @click="addbindPark">摄像头车位绑定</el-button>
         </el-col>
       </el-row>
      </el-form>
@@ -34,7 +29,7 @@
     <div class="main">
       <el-table
         :header-cell-style="tableHeaderColor"
-        :data="carparkData"
+        :data="bindParkData"
         stripe
         style="width: 100%">
         <el-table-column
@@ -46,7 +41,22 @@
         <el-table-column
           prop="date"
           align="center"
-          label="名称">
+          label="连接类型">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="连接设备ID">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="监控车道序号">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="通道号">
         </el-table-column>
         <el-table-column
           prop="date"
@@ -56,54 +66,14 @@
         <el-table-column
           prop="date"
           align="center"
-          label="所属区域">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="授权类型">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="授权人或公司">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="最近使用车牌号">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="车库">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="固定车位">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="使用中">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
           label="状态">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="备注">
         </el-table-column>
         <el-table-column
           prop="address"
           align="center"
           label="操作">
           <template slot-scope="scope">
-          <el-button class="parkuser_btn" @click="keepgarage" type="text" size="small">维护</el-button>
+          <el-button class="parkuser_btn" @click="keepbindPark" type="text" size="small">维护</el-button>
           <el-button class="parkuser_btn" type="text" size="small">删除</el-button>
         </template>
         </el-table-column>
@@ -122,7 +92,7 @@ export default {
  name:"region",
  data () {
    return {
-    carparkData:[{
+    bindParkData:[{
       data:1
     }],
     searchForm:{
@@ -131,12 +101,12 @@ export default {
    }
  },
  methods: {
-   addcarSeat () {
-     this.$router.push({name:'addcarSeat'})
+   addbindPark () {
+     this.$router.push({name:'addBind'})
      this.$store.commit('changedevice')
    },
-   keepgarage () {
-        this.$router.push({name:'keepcarSeat'})
+   keepbindPark () {
+        this.$router.push({name:'keepBind'})
         this.$store.commit('changedevice')
    },
    tableHeaderColor({ row, column, rowIndex, columnIndex }) {
@@ -149,7 +119,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.car-park {
+.bindPark {
   width: 100%;
   height: 100%;
   .nav {
@@ -215,6 +185,7 @@ export default {
       }
    }
     .openUser {
+        width: 135px;
         margin-left: -4px;
         background-image: linear-gradient(
             #02a896,
@@ -258,7 +229,7 @@ export default {
 }
 </style>
 <style lang="less">
-.car-park {
+.bindPark {
   .el-input__inner {
       background-image: linear-gradient(
         #eeeeee,
@@ -266,8 +237,6 @@ export default {
       linear-gradient(
         #222228,
         #222228);
-      background-blend-mode: normal,
-        normal;
       border-radius: 4px;
       border:none;
   }

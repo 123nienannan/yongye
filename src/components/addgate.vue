@@ -1,86 +1,85 @@
 <template>
-  <div class="keepmonitorregion">
-    <div class="keepmonitorregion_top">
+  <div class="addgate">
+    <div class="addgate_top">
       <i @click="comeback" class="el-icon-back"></i>
-      <span>维护车库区域</span>
+      <span>添加闸机</span>
     </div>
-    <div class="keepmonitorregion_main">
-      <p>维护车库区域</p>
-      <el-form :model="keepmonitorregionForm" ref="keepmonitorregionForm" label-width="130px" class="demo-ruleForm">
+    <div class="addgate_main">
+      <p>添加闸机</p>
+      <el-form :model="addgateForm" ref="addgateForm" label-width="100px" class="demo-ruleForm">
         <el-row>
           <el-col :span="10">
            <el-form-item label="名称:" prop="name">
-             <el-input v-model="keepmonitorregionForm.name" placeholder="请输入名称"></el-input>
+            <el-input v-model="addgateForm.name" placeholder="请输入车位编号"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-           <el-form-item label="区域图:" prop="name">
-             <input type="file">
-             <div style="width:50px;height:50px;background-color:red;"></div>
-           </el-form-item>
-          </el-col>
-          <el-col :span="14"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="5">
-           <el-form-item label="宽度:" prop="name">
-            <el-input v-model="keepmonitorregionForm.name" placeholder="请输入宽度"></el-input>
-           </el-form-item>
-          </el-col>
-          <el-col :span="5">
-            <el-form-item label="高度:" prop="name">
-            <el-input v-model="keepmonitorregionForm.name" placeholder="请输入高度"></el-input>
+           <el-form-item label="车库:" prop="region">
+            <el-select v-model="addgateForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-            <el-form-item label="已分配摄像头:">
-              <div><el-input
-                      class="input-new-tag"
-                      v-if="inputVisible"
-                      v-model="inputValue"
-                      ref="saveTagInput"
-                      size="small"
-                      @keyup.enter.native="handleInputConfirm"
-                      @blur="handleInputConfirm"
-                    >
-                    </el-input>
-                    <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button></div>
-                    <el-tag
-                      :key="tag"
-                      v-for="tag in dynamicTags"
-                      closable
-                      :disable-transitions="false"
-                      @close="handleClose(tag)">
-                      {{tag}}
-                    </el-tag>
-            </el-form-item>
+           <el-form-item label="出入口:" prop="name">
+             <el-select v-model="addgateForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-            <el-form-item label="已分配诱导管理器:">
-
-            </el-form-item>
+           <el-form-item label="类型:" prop="name">
+             <el-select v-model="addgateForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-            <el-form-item label="已分配LED:">
-
-            </el-form-item>
+           <el-form-item label="连接设备:" prop="name">
+             <el-select v-model="addgateForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="端口:" prop="name">
+            <el-input v-model="addgateForm.name" placeholder="请输入车位编号"></el-input>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+         <el-row>
+          <el-col :span="10">
+           <el-form-item label="状态:" prop="name">
+             <el-select v-model="addgateForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
       </el-form>
-      <div class="keepmonitorregion_foot">
+      <div class="addgate_foot">
         <el-button class="cancle">取消</el-button>
         <el-button class="confirm">确认</el-button>
       </div>
@@ -92,50 +91,29 @@
 export default {
   data() {
     return {
-    keepmonitorregionForm: {
+      addgateForm: {
         name:''
-      },
-    dynamicTags: ['标签一', '标签二', '标签三'],
-    inputVisible: false,
-    inputValue: ''
+      }
     }
   },
   methods: {
     comeback () {
       window.history.go(-1)
-    },
-     handleClose(tag) {
-        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
-     },
-     showInput() {
-        this.inputVisible = true;
-        this.$nextTick(_ => {
-          this.$refs.saveTagInput.$refs.input.focus();
-        });
-     },
-      handleInputConfirm() {
-        let inputValue = this.inputValue;
-        if (inputValue) {
-          this.dynamicTags.push(inputValue);
-        }
-        this.inputVisible = false;
-        this.inputValue = '';
-      }
     }
   }
-
+}
 </script>
 
 <style lang="less" scoped>
-.keepmonitorregion {
+.addgate {
   padding: 20px 58px 82px 62px;
-  .keepmonitorregion_top {
+  .addgate_top {
     font-size: 16px;
     span {
       color: #fba128;
     }
   }
-  .keepmonitorregion_main {
+  .addgate_main {
     box-shadow: 0px 2px 3px 0px
 		rgba(0, 0, 0, 0.3);
     border-radius: 4px;
@@ -151,7 +129,7 @@ export default {
     }
     .el-form {
       margin-top: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       .el-form-item {
           margin-bottom: 8px;
       }
@@ -172,7 +150,7 @@ export default {
         }
       }
     }
-    .keepmonitorregion_foot {
+    .addgate_foot {
       padding-top: 20px;
       border-top: 1px solid #ddd;
       display: flex;

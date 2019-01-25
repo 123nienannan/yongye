@@ -1,24 +1,24 @@
 <template>
-  <div class="addregiongarage">
-    <div class="addregiongarage_top">
+  <div class="addguidance">
+    <div class="addguidance_top">
       <i @click="comeback" class="el-icon-back"></i>
-      <span>添加车库区域</span>
+      <span>添加诱导管理器</span>
     </div>
-    <div class="addregiongarage_main">
-      <p>添加车库区域</p>
-      <el-form :model="addregiongarageForm" ref="addregiongarageForm" label-width="70px" class="demo-ruleForm">
+    <div class="addguidance_main">
+      <p>添加诱导管理器</p>
+      <el-form :model="addguidanceForm" ref="addguidanceForm" label-width="100px" class="demo-ruleForm">
         <el-row>
           <el-col :span="10">
            <el-form-item label="名称:" prop="name">
-             <el-input v-model="addregiongarageForm.name" placeholder="请输入名称"></el-input>
+            <el-input v-model="addguidanceForm.name" placeholder="请输入名称"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
-         <el-row>
+        <el-row>
           <el-col :span="10">
            <el-form-item label="车库:" prop="region">
-            <el-select v-model="addregiongarageForm.name" placeholder="请选择" style="width: 100%;">
+            <el-select v-model="addguidanceForm.name" placeholder="开放车位" style="width: 100%;">
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
@@ -28,30 +28,70 @@
         </el-row>
         <el-row>
           <el-col :span="10">
-           <el-form-item label="区域图:" prop="name">
-             <input type="file">
+           <el-form-item label="IP地址:" prop="name">
+            <el-input v-model="addguidanceForm.name" placeholder="请输入IP地址"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-           <el-form-item label="宽度:" prop="name">
-            <el-input v-model="addregiongarageForm.name" placeholder="请输入宽度"></el-input>
+           <el-form-item label="端口:" prop="name">
+            <el-input v-model="addguidanceForm.name" placeholder="请输入端口"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
         <el-row>
           <el-col :span="10">
-           <el-form-item label="高度:" prop="name">
-            <el-input v-model="addregiongarageForm.name" placeholder="请输入高度"></el-input>
+           <el-form-item label="用户名:" prop="name">
+            <el-input v-model="addguidanceForm.name" placeholder="请输入用户名"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="密码:" prop="name">
+            <el-input v-model="addguidanceForm.name" placeholder="请输入密码"></el-input>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="控制协议:" prop="region">
+            <el-select v-model="addguidanceForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="状态:" prop="name">
+             <el-select v-model="addguidanceForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="编号:" prop="name">
+            <el-input v-model="addguidanceForm.name" placeholder="请输入编号"></el-input>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+
+
       </el-form>
-      <div class="addregiongarage_foot">
+      <div class="addguidance_foot">
         <el-button class="cancle">取消</el-button>
         <el-button class="confirm">确认</el-button>
       </div>
@@ -63,8 +103,8 @@
 export default {
   data() {
     return {
-      addregiongarageForm: {
-        name:'first'
+      addguidanceForm: {
+        name:''
       }
     }
   },
@@ -77,15 +117,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.addregiongarage {
+.addguidance {
   padding: 20px 58px 82px 62px;
-  .addregiongarage_top {
+  .addguidance_top {
     font-size: 16px;
     span {
       color: #fba128;
     }
   }
-  .addregiongarage_main {
+  .addguidance_main {
     box-shadow: 0px 2px 3px 0px
 		rgba(0, 0, 0, 0.3);
     border-radius: 4px;
@@ -101,13 +141,9 @@ export default {
     }
     .el-form {
       margin-top: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       .el-form-item {
-          margin-bottom: 8px;
-      }
-      .el-input__inner  {
-        height: 32px;
-        line-height: 32px;
+          margin-bottom: 6px;
       }
       .icon_explain {
         margin-left: 8px;
@@ -122,7 +158,7 @@ export default {
         }
       }
     }
-    .addregiongarage_foot {
+    .addguidance_foot {
       padding-top: 20px;
       border-top: 1px solid #ddd;
       display: flex;
@@ -153,3 +189,13 @@ export default {
   }
 }
 </style>
+<style lang="less">
+.addguidance {
+ .el-input__inner  {
+    height: 37px;
+    line-height: 37px;
+}
+}
+
+</style>
+

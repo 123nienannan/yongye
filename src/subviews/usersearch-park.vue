@@ -104,6 +104,11 @@
         <el-table-column
           prop="address"
           align="center"
+          label="有效期期">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          align="center"
           label="状态">
         </el-table-column>
         <el-table-column

@@ -3,7 +3,7 @@
    <div class="nav">
      <span>智慧停车</span>
       ->
-     <span class="current">用户停车</span>
+     <span class="current">停车用户</span>
    </div>
    <div class="topBar">
      <el-form label-width="80px" size="small" :model="searchForm">

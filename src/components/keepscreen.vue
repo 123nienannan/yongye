@@ -1,46 +1,46 @@
 <template>
-  <div class="keepmonitorregion">
-    <div class="keepmonitorregion_top">
+  <div class="keepscreen">
+    <div class="keepscreen_top">
       <i @click="comeback" class="el-icon-back"></i>
-      <span>维护车库区域</span>
+      <span>维护显示屏车位组</span>
     </div>
-    <div class="keepmonitorregion_main">
-      <p>维护车库区域</p>
-      <el-form :model="keepmonitorregionForm" ref="keepmonitorregionForm" label-width="130px" class="demo-ruleForm">
+    <div class="keepscreen_main">
+      <p>维护显示屏车位组</p>
+      <el-form :model="keepscreenForm" ref="keepscreenForm" label-width="100px" class="demo-ruleForm">
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="车库:" prop="region">
+            <el-select v-model="keepscreenForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="10">
+           <el-form-item label="车库区域:" prop="name">
+             <el-select v-model="keepscreenForm.name" placeholder="开放车位" style="width: 100%;">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+           </el-form-item>
+          </el-col>
+          <el-col :span="14"></el-col>
+        </el-row>
         <el-row>
           <el-col :span="10">
            <el-form-item label="名称:" prop="name">
-             <el-input v-model="keepmonitorregionForm.name" placeholder="请输入名称"></el-input>
+            <el-input v-model="keepscreenForm.name" placeholder="请输入车位编号"></el-input>
            </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
-        <el-row>
+         <el-row>
           <el-col :span="10">
-           <el-form-item label="区域图:" prop="name">
-             <input type="file">
-             <div style="width:50px;height:50px;background-color:red;"></div>
-           </el-form-item>
-          </el-col>
-          <el-col :span="14"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="5">
-           <el-form-item label="宽度:" prop="name">
-            <el-input v-model="keepmonitorregionForm.name" placeholder="请输入宽度"></el-input>
-           </el-form-item>
-          </el-col>
-          <el-col :span="5">
-            <el-form-item label="高度:" prop="name">
-            <el-input v-model="keepmonitorregionForm.name" placeholder="请输入高度"></el-input>
-           </el-form-item>
-          </el-col>
-          <el-col :span="14"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="10">
-            <el-form-item label="已分配摄像头:">
-              <div><el-input
+           <el-form-item label="已绑定车位:" prop="name">
+             <div><el-input
                       class="input-new-tag"
                       v-if="inputVisible"
                       v-model="inputValue"
@@ -59,28 +59,12 @@
                       @close="handleClose(tag)">
                       {{tag}}
                     </el-tag>
-            </el-form-item>
-          </el-col>
-          <el-col :span="14"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="10">
-            <el-form-item label="已分配诱导管理器:">
-
-            </el-form-item>
-          </el-col>
-          <el-col :span="14"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="10">
-            <el-form-item label="已分配LED:">
-
-            </el-form-item>
+           </el-form-item>
           </el-col>
           <el-col :span="14"></el-col>
         </el-row>
       </el-form>
-      <div class="keepmonitorregion_foot">
+      <div class="keepscreen_foot">
         <el-button class="cancle">取消</el-button>
         <el-button class="confirm">确认</el-button>
       </div>
@@ -92,19 +76,19 @@
 export default {
   data() {
     return {
-    keepmonitorregionForm: {
+      keepscreenForm: {
         name:''
       },
-    dynamicTags: ['标签一', '标签二', '标签三'],
-    inputVisible: false,
-    inputValue: ''
+      dynamicTags: ['标签一', '标签二', '标签三'],
+      inputVisible: false,
+      inputValue: ''
     }
   },
   methods: {
     comeback () {
       window.history.go(-1)
     },
-     handleClose(tag) {
+    handleClose(tag) {
         this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
      },
      showInput() {
@@ -121,21 +105,20 @@ export default {
         this.inputVisible = false;
         this.inputValue = '';
       }
-    }
   }
-
+}
 </script>
 
 <style lang="less" scoped>
-.keepmonitorregion {
+.keepscreen {
   padding: 20px 58px 82px 62px;
-  .keepmonitorregion_top {
+  .keepscreen_top {
     font-size: 16px;
     span {
       color: #fba128;
     }
   }
-  .keepmonitorregion_main {
+  .keepscreen_main {
     box-shadow: 0px 2px 3px 0px
 		rgba(0, 0, 0, 0.3);
     border-radius: 4px;
@@ -151,7 +134,7 @@ export default {
     }
     .el-form {
       margin-top: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       .el-form-item {
           margin-bottom: 8px;
       }
@@ -172,7 +155,7 @@ export default {
         }
       }
     }
-    .keepmonitorregion_foot {
+    .keepscreen_foot {
       padding-top: 20px;
       border-top: 1px solid #ddd;
       display: flex;

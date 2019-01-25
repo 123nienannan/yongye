@@ -1,21 +1,16 @@
 <template>
-<div class="car-park">
+<div class="showScreen">
     <div class="topBar">
      <el-form label-width="80px" size="small" :model="searchForm">
       <el-row style="padding-top: 2px;">
           <el-col :span="4">
-            <el-form-item label="区域:">
-                <el-input v-model="searchForm.name" placeholder="请输入区域"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="4">
-              <el-form-item label="编号:">
-              <el-input v-model="searchForm.name" placeholder="请输入编号"></el-input>
+              <el-form-item label="IP地址:">
+                <el-input v-model="searchForm.name" placeholder="请输入IP地址"></el-input>
               </el-form-item>
           </el-col>
           <el-col :span="4">
               <el-form-item label="名称:">
-                <el-input v-model="searchForm.name" placeholder="请输入名称"></el-input>
+              <el-input v-model="searchForm.name" placeholder="请输入名称"></el-input>
               </el-form-item>
           </el-col>
         <el-col :span="10">
@@ -26,7 +21,7 @@
             action="">
             <el-button class="import">批量导入</el-button>
           </el-upload>
-          <el-button icon="el-icon-plus" class="openUser" @click="addcarSeat">车位</el-button>
+          <el-button icon="el-icon-plus" class="openUser" @click="addshowScreen">显示屏</el-button>
         </el-col>
       </el-row>
      </el-form>
@@ -34,7 +29,7 @@
     <div class="main">
       <el-table
         :header-cell-style="tableHeaderColor"
-        :data="carparkData"
+        :data="showScreenData"
         stripe
         style="width: 100%">
         <el-table-column
@@ -51,59 +46,74 @@
         <el-table-column
           prop="date"
           align="center"
-          label="车位编号">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="所属区域">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="授权类型">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="授权人或公司">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
-          label="最近使用车牌号">
-        </el-table-column>
-        <el-table-column
-          prop="date"
-          align="center"
           label="车库">
         </el-table-column>
         <el-table-column
           prop="date"
           align="center"
-          label="固定车位">
+          label="连接类型">
         </el-table-column>
         <el-table-column
           prop="date"
           align="center"
-          label="使用中">
+          label="连接设备">
         </el-table-column>
         <el-table-column
           prop="date"
           align="center"
-          label="状态">
+          label="端口">
         </el-table-column>
         <el-table-column
           prop="date"
           align="center"
-          label="备注">
+          label="宽度">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="高度">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="设备地址">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="屏地址">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="字体大小">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="字体颜色">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="型号">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="出入口">
+        </el-table-column>
+        <el-table-column
+          prop="date"
+          align="center"
+          label="编号">
         </el-table-column>
         <el-table-column
           prop="address"
           align="center"
           label="操作">
           <template slot-scope="scope">
-          <el-button class="parkuser_btn" @click="keepgarage" type="text" size="small">维护</el-button>
+          <el-button class="parkuser_btn" @click="showScreen" type="text" size="small">维护</el-button>
           <el-button class="parkuser_btn" type="text" size="small">删除</el-button>
         </template>
         </el-table-column>
@@ -122,7 +132,7 @@ export default {
  name:"region",
  data () {
    return {
-    carparkData:[{
+    showScreenData:[{
       data:1
     }],
     searchForm:{
@@ -131,12 +141,12 @@ export default {
    }
  },
  methods: {
-   addcarSeat () {
-     this.$router.push({name:'addcarSeat'})
+   addshowScreen () {
+     this.$router.push({name:'addshowScreen'})
      this.$store.commit('changedevice')
    },
-   keepgarage () {
-        this.$router.push({name:'keepcarSeat'})
+   showScreen () {
+        this.$router.push({name:'keepshowScreen'})
         this.$store.commit('changedevice')
    },
    tableHeaderColor({ row, column, rowIndex, columnIndex }) {
@@ -149,7 +159,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.car-park {
+.showScreen {
   width: 100%;
   height: 100%;
   .nav {
@@ -215,6 +225,7 @@ export default {
       }
    }
     .openUser {
+        width: 100px;
         margin-left: -4px;
         background-image: linear-gradient(
             #02a896,
@@ -258,7 +269,7 @@ export default {
 }
 </style>
 <style lang="less">
-.car-park {
+.showScreen {
   .el-input__inner {
       background-image: linear-gradient(
         #eeeeee,
@@ -266,8 +277,6 @@ export default {
       linear-gradient(
         #222228,
         #222228);
-      background-blend-mode: normal,
-        normal;
       border-radius: 4px;
       border:none;
   }
